@@ -1,26 +1,26 @@
 "=============================================================================
-"    Description: .vimrcÉTÉìÉvÉãê›íË
+"    Description: .vimrcサンプル設定
 "         Author: anonymous
 "  Last Modified: 0000-00-00 07:03
 "        Version: 0.00
 "=============================================================================
 set nocompatible
 scriptencoding cp932
-" scriptencodingÇ∆ÅAÇ±ÇÃÉtÉ@ÉCÉãÇÃÉGÉìÉRÅ[ÉfÉBÉìÉOÇ™àÍívÇ∑ÇÈÇÊÇ§íçà”ÅI
-" scriptencodingÇÕÅAvimÇÃì‡ïîÉGÉìÉRÅ[ÉfÉBÉìÉOÇ∆ìØÇ∂Ç‡ÇÃÇêÑèßÇµÇ‹Ç∑ÅB
-" â¸çsÉRÅ[ÉhÇÕ set fileformat=unix Ç…ê›íËÇ∑ÇÈÇ∆unixÇ≈Ç‡égÇ¶Ç‹Ç∑ÅB
+" scriptencodingと、このファイルのエンコーディングが一致するよう注意！
+" scriptencodingは、vimの内部エンコーディングと同じものを推奨します。
+" 改行コードは set fileformat=unix に設定するとunixでも使えます。
 
-" WindowsÇ≈ì‡ïîÉGÉìÉRÅ[ÉfÉBÉìÉOÇ cp932à»äOÇ…ÇµÇƒÇ¢ÇƒÅA
-" ä¬ã´ïœêîÇ…ì˙ñ{åÍÇä‹ÇﬁílÇê›íËÇµÇΩÇ¢èÍçáÇÕ Let ÇégópÇµÇ‹Ç∑ÅB
-" LetÇÕ vimrc(ÉIÅ[ÉãÉCÉìÉèÉìÉpÉbÉPÅ[ÉWÇÃèÍçá)Ç∆ encode.vim Ç≈íËã`Ç≥ÇÍÇ‹Ç∑ÅB
-" Let $HOGE=$USERPROFILE.'/ÇŸÇ∞'
+" Windowsで内部エンコーディングを cp932以外にしていて、
+" 環境変数に日本語を含む値を設定したい場合は Let を使用します。
+" Letは vimrc(オールインワンパッケージの場合)と encode.vim で定義されます。
+" Let $HOGE=$USERPROFILE.'/ほげ'
 
 "----------------------------------------
-" ÉÜÅ[ÉUÅ[ÉâÉìÉ^ÉCÉÄÉpÉXê›íË
+" ユーザーランタイムパス設定
 "----------------------------------------
-" Windows, unixÇ≈ÇÃruntimepathÇÃà·Ç¢Çãzé˚Ç∑ÇÈÇΩÇﬂÇÃÇ‡ÇÃÅB
-" $MY_VIMRUNTIMEÇÕÉÜÅ[ÉUÅ[ÉâÉìÉ^ÉCÉÄÉfÉBÉåÉNÉgÉäÇé¶Ç∑ÅB
-" :echo $MY_VIMRUNTIMEÇ≈é¿ç€ÇÃÉpÉXÇämîFÇ≈Ç´Ç‹Ç∑ÅB
+" Windows, unixでのruntimepathの違いを吸収するためのもの。
+" $MY_VIMRUNTIMEはユーザーランタイムディレクトリを示す。
+" :echo $MY_VIMRUNTIMEで実際のパスを確認できます。
 if isdirectory($HOME . '/.vim')
   let $MY_VIMRUNTIME = $HOME.'/.vim'
 elseif isdirectory($HOME . '\vimfiles')
@@ -29,149 +29,148 @@ elseif isdirectory($VIM . '\vimfiles')
   let $MY_VIMRUNTIME = $VIM.'\vimfiles'
 endif
 
-" ÉâÉìÉ^ÉCÉÄÉpÉXÇí Ç∑ïKóvÇÃÇ†ÇÈÉvÉâÉOÉCÉìÇégópÇ∑ÇÈèÍçáÅA
-" $MY_VIMRUNTIMEÇégópÇ∑ÇÈÇ∆ Windows/LinuxÇ≈êÿÇËï™ÇØÇÈïKóvÇ™ñ≥Ç≠Ç»ÇËÇ‹Ç∑ÅB
-" ó·) vimfiles/qfixapp (LinuxÇ≈ÇÕ~/.vim/qfixapp)Ç…ÉâÉìÉ^ÉCÉÄÉpÉXÇí Ç∑èÍçá
+" ランタイムパスを通す必要のあるプラグインを使用する場合、
+" $MY_VIMRUNTIMEを使用すると Windows/Linuxで切り分ける必要が無くなります。
+" 例) vimfiles/qfixapp (Linuxでは~/.vim/qfixapp)にランタイムパスを通す場合
 " set runtimepath+=$MY_VIMRUNTIME/qfixapp
 
 "----------------------------------------
-" ì‡ïîÉGÉìÉRÅ[ÉfÉBÉìÉOéwíË
+" 内部エンコーディング指定
 "----------------------------------------
-" ì‡ïîÉGÉìÉRÅ[ÉfÉBÉìÉOÇÃUTF-8âªÇ∆ï∂éöÉRÅ[ÉhÇÃé©ìÆîFéØê›íËÇencode.vimÇ≈çsÇ§ÅB
-" ÉIÅ[ÉãÉCÉìÉèÉìÉpÉbÉPÅ[ÉWÇÃèÍçá vimrcÇ≈ê›íËÇ≥ÇÍÇ‹Ç∑ÅB
-" ÉGÉìÉRÅ[ÉfÉBÉìÉOéwíËÇ‚ï∂éöÉRÅ[ÉhÇÃé©ìÆîFéØê›íËÇ™ìKêÿÇ…ê›íËÇ≥ÇÍÇƒÇ¢ÇÈèÍçáÅA
-" éüçsÇÃ encode.vimì«çûïîï™ÇÕÉRÉÅÉìÉgÉAÉEÉgÇµÇƒâ∫Ç≥Ç¢ÅB
+" 内部エンコーディングのUTF-8化と文字コードの自動認識設定をencode.vimで行う。
+" オールインワンパッケージの場合 vimrcで設定されます。
+" エンコーディング指定や文字コードの自動認識設定が適切に設定されている場合、
+" 次行の encode.vim読込部分はコメントアウトして下さい。
 " silent! source $MY_VIMRUNTIME/pluginjp/encode.vim
-" scriptencodingÇ∆àŸÇ»ÇÈì‡ïîÉGÉìÉRÅ[ÉfÉBÉìÉOÇ…ïœçXÇ∑ÇÈèÍçáÅA
-" ïœçXå„Ç…Ç‡scriptencodingÇéwíËÇµÇƒÇ®Ç≠Ç∆ñ‚ëËÇ™ãNÇ´Ç…Ç≠Ç≠Ç»ÇËÇ‹Ç∑ÅB
+" scriptencodingと異なる内部エンコーディングに変更する場合、
+" 変更後にもscriptencodingを指定しておくと問題が起きにくくなります。
 " scriptencoding cp932
 
 "----------------------------------------
-" ÉVÉXÉeÉÄê›íË
+" システム設定
 "----------------------------------------
 if has('gui_macvim')
     set transparency=3
     set guifont=Menlo:h12
     set lines=90 columns=130
     set guioptions-=T
-endif
-" mswin.vimÇì«Ç›çûÇﬁ
+endif" mswin.vimを読み込む
 " source $VIMRUNTIME/mswin.vim
 " behave mswin
 
-" ÉtÉ@ÉCÉãÇÃè„èëÇ´ÇÃëOÇ…ÉoÉbÉNÉAÉbÉvÇçÏÇÈ/çÏÇÁÇ»Ç¢
-" set writebackupÇéwíËÇµÇƒÇ‡ÉIÉvÉVÉáÉì 'backup' Ç™ÉIÉìÇ≈Ç»Ç¢å¿ÇËÅA
-" ÉoÉbÉNÉAÉbÉvÇÕè„èëÇ´Ç…ê¨å˜ÇµÇΩå„Ç…çÌèúÇ≥ÇÍÇÈÅB
+" ファイルの上書きの前にバックアップを作る/作らない
+" set writebackupを指定してもオプション 'backup' がオンでない限り、
+" バックアップは上書きに成功した後に削除される。
 set nowritebackup
-" ÉoÉbÉNÉAÉbÉv/ÉXÉèÉbÉvÉtÉ@ÉCÉãÇçÏê¨Ç∑ÇÈ/ÇµÇ»Ç¢
+" バックアップ/スワップファイルを作成する/しない
 set nobackup
 if version >= 703
-  " çƒì«çûÅAvimèIóπå„Ç‡åpë±Ç∑ÇÈÉAÉìÉhÉD(7.3)
+  " 再読込、vim終了後も継続するアンドゥ(7.3)
   " set undofile
-  " ÉAÉìÉhÉDÇÃï€ë∂èÍèä(7.3)
+  " アンドゥの保存場所(7.3)
   " set undodir=.
 endif
 " set noswapfile
-" viminfoÇçÏê¨ÇµÇ»Ç¢
+" viminfoを作成しない
 " set viminfo=
-" ÉNÉäÉbÉvÉ{Å[ÉhÇã§óL
+" クリップボードを共有
 set clipboard+=unnamed
-" 8êiêîÇñ≥å¯Ç…Ç∑ÇÈÅB<C-a>,<C-x>Ç…âeãøÇ∑ÇÈ
+" 8進数を無効にする。<C-a>,<C-x>に影響する
 set nrformats-=octal
-" ÉLÅ[ÉRÅ[ÉhÇ‚É}ÉbÉsÉìÉOÇ≥ÇÍÇΩÉLÅ[óÒÇ™äÆóπÇ∑ÇÈÇÃÇë“Ç¬éûä‘(É~Éäïb)
+" キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
 set timeout timeoutlen=3000 ttimeoutlen=100
-" ï“èWåãâ îÒï€ë∂ÇÃÉoÉbÉtÉ@Ç©ÇÁÅAêVÇµÇ¢ÉoÉbÉtÉ@ÇäJÇ≠Ç∆Ç´Ç…åxçêÇèoÇ≥Ç»Ç¢
+" 編集結果非保存のバッファから、新しいバッファを開くときに警告を出さない
 set hidden
-" ÉqÉXÉgÉäÇÃï€ë∂êî
+" ヒストリの保存数
 set history=50
-" ì˙ñ{åÍÇÃçsÇÃòAåãéûÇ…ÇÕãÛîíÇì¸óÕÇµÇ»Ç¢
+" 日本語の行の連結時には空白を入力しない
 set formatoptions+=mM
-" Visual blockÉÇÅ[ÉhÇ≈ÉtÉäÅ[ÉJÅ[É\ÉãÇóLå¯Ç…Ç∑ÇÈ
+" Visual blockモードでフリーカーソルを有効にする
 set virtualedit=block
-" ÉJÅ[É\ÉãÉLÅ[Ç≈çsññÅ^çsì™ÇÃà⁄ìÆâ¬î\Ç…ê›íË
+" カーソルキーで行末／行頭の移動可能に設定
 set whichwrap=b,s,[,],<,>
-" ÉoÉbÉNÉXÉyÅ[ÉXÇ≈ÉCÉìÉfÉìÉgÇ‚â¸çsÇçÌèúÇ≈Ç´ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+" バックスペースでインデントや改行を削除できるようにする
 set backspace=indent,eol,start
-" Å†Ç‚ÅõÇÃï∂éöÇ™Ç†Ç¡ÇƒÇ‡ÉJÅ[É\Éãà íuÇ™Ç∏ÇÍÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
+" □や○の文字があってもカーソル位置がずれないようにする
 set ambiwidth=double
-" ÉRÉ}ÉìÉhÉâÉCÉìï‚äÆÇ∑ÇÈÇ∆Ç´Ç…ã≠âªÇ≥ÇÍÇΩÇ‡ÇÃÇégÇ§
+" コマンドライン補完するときに強化されたものを使う
 set wildmenu
-" É}ÉEÉXÇóLå¯Ç…Ç∑ÇÈ
+" マウスを有効にする
 if has('mouse')
   set mouse=a
 endif
-" pluginÇégópâ¬î\Ç…Ç∑ÇÈ
+" pluginを使用可能にする
 filetype plugin indent on
 
 "----------------------------------------
-" åüçı
+" 検索
 "----------------------------------------
-" åüçıÇÃéûÇ…ëÂï∂éöè¨ï∂éöÇãÊï ÇµÇ»Ç¢
-" ÇΩÇæÇµëÂï∂éöè¨ï∂éöÇÃóºï˚Ç™ä‹Ç‹ÇÍÇƒÇ¢ÇÈèÍçáÇÕëÂï∂éöè¨ï∂éöÇãÊï Ç∑ÇÈ
+" 検索の時に大文字小文字を区別しない
+" ただし大文字小文字の両方が含まれている場合は大文字小文字を区別する
 set ignorecase
 set smartcase
-" åüçıéûÇ…ÉtÉ@ÉCÉãÇÃç≈å„Ç‹Ç≈çsÇ¡ÇΩÇÁç≈èâÇ…ñﬂÇÈ
+" 検索時にファイルの最後まで行ったら最初に戻る
 set wrapscan
-" ÉCÉìÉNÉäÉÅÉìÉ^ÉãÉTÅ[É`
+" インクリメンタルサーチ
 set incsearch
-" åüçıï∂éöÇÃã≠í≤ï\é¶
+" 検索文字の強調表示
 set hlsearch
-" w,bÇÃà⁄ìÆÇ≈îFéØÇ∑ÇÈï∂éö
+" w,bの移動で認識する文字
 " set iskeyword=a-z,A-Z,48-57,_,.,-,>
-" vimgrep ÇÉfÉtÉHÉãÉgÇÃgrepÇ∆Ç∑ÇÈèÍçáinternal
+" vimgrep をデフォルトのgrepとする場合internal
 " set grepprg=internal
 
 "----------------------------------------
-" ï\é¶ê›íË
+" 表示設定
 "----------------------------------------
-" ÉXÉvÉâÉbÉVÉÖ(ãNìÆéûÇÃÉÅÉbÉZÅ[ÉW)Çï\é¶ÇµÇ»Ç¢
+" スプラッシュ(起動時のメッセージ)を表示しない
 " set shortmess+=I
-" ÉGÉâÅ[éûÇÃâπÇ∆ÉrÉWÉÖÉAÉãÉxÉãÇÃó}êß(gvimÇÕ.gvimrcÇ≈ê›íË)
+" エラー時の音とビジュアルベルの抑制(gvimは.gvimrcで設定)
 set noerrorbells
 set novisualbell
 set visualbell t_vb=
-" É}ÉNÉçé¿çsíÜÇ»Ç«ÇÃâÊñ çƒï`âÊÇçsÇÌÇ»Ç¢
+" マクロ実行中などの画面再描画を行わない
 " set lazyredraw
-" WindowsÇ≈ÉfÉBÉåÉNÉgÉäÉpÉXÇÃãÊêÿÇËï∂éöï\é¶Ç… / ÇégÇ¶ÇÈÇÊÇ§Ç…Ç∑ÇÈ
+" Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
 set shellslash
-" çsî‘çÜï\é¶
+" 行番号表示
 set number
 if version >= 703
-  " ëäëŒçsî‘çÜï\é¶(7.3)
+  " 相対行番号表示(7.3)
   " set relativenumber
 endif
-" äáå ÇÃëŒâûï\é¶éûä‘
+" 括弧の対応表示時間
 set showmatch matchtime=1
-" É^ÉuÇê›íË
+" タブを設定
 " set ts=4 sw=4 sts=4
-" é©ìÆìIÇ…ÉCÉìÉfÉìÉgÇ∑ÇÈ
+" 自動的にインデントする
 set autoindent
-" CÉCÉìÉfÉìÉgÇÃê›íË
+" Cインデントの設定
 set cinoptions+=:0
-" É^ÉCÉgÉãÇï\é¶
+" タイトルを表示
 set title
-" ÉRÉ}ÉìÉhÉâÉCÉìÇÃçÇÇ≥ (gvimÇÕgvimrcÇ≈éwíË)
+" コマンドラインの高さ (gvimはgvimrcで指定)
 " set cmdheight=2
 set laststatus=2
-" ÉRÉ}ÉìÉhÇÉXÉeÅ[É^ÉXçsÇ…ï\é¶
+" コマンドをステータス行に表示
 set showcmd
-" âÊñ ç≈å„ÇÃçsÇÇ≈Ç´ÇÈå¿ÇËï\é¶Ç∑ÇÈ
+" 画面最後の行をできる限り表示する
 set display=lastline
-" TabÅAçsññÇÃîºäpÉXÉyÅ[ÉXÇñæé¶ìIÇ…ï\é¶Ç∑ÇÈ
+" Tab、行末の半角スペースを明示的に表示する
 set list
 set listchars=tab:^\ ,trail:~
 
-" ÉnÉCÉâÉCÉgÇóLå¯Ç…Ç∑ÇÈ
+" ハイライトを有効にする
 if &t_Co > 2 || has('gui_running')
   syntax on
 endif
-" êFÉeÅ[É}ê›íË
-" gvimÇÃêFÉeÅ[É}ÇÕ.gvimrcÇ≈éwíËÇ∑ÇÈ
+" 色テーマ設定
+" gvimの色テーマは.gvimrcで指定する
 " colorscheme mycolor
 
 """"""""""""""""""""""""""""""
-" ÉXÉeÅ[É^ÉXÉâÉCÉìÇ…ï∂éöÉRÅ[Éhìôï\é¶
-" iconvÇ™égópâ¬î\ÇÃèÍçáÅAÉJÅ[É\Éãè„ÇÃï∂éöÉRÅ[ÉhÇÉGÉìÉRÅ[ÉhÇ…âûÇ∂ÇΩï\é¶Ç…Ç∑ÇÈFencB()Çégóp
+" ステータスラインに文字コード等表示
+" iconvが使用可能の場合、カーソル上の文字コードをエンコードに応じた表示にするFencB()を使用
 """"""""""""""""""""""""""""""
 if has('iconv')
   set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=[0x%{FencB()}]\ (%v,%l)/%L%8P\ 
@@ -179,7 +178,7 @@ else
   set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
 endif
 
-" FencB() : ÉJÅ[É\Éãè„ÇÃï∂éöÉRÅ[ÉhÇÉGÉìÉRÅ[ÉhÇ…âûÇ∂ÇΩï\é¶Ç…Ç∑ÇÈ
+" FencB() : カーソル上の文字コードをエンコードに応じた表示にする
 function! FencB()
   let c = matchstr(getline('.'), '.', col('.') - 1)
   let c = iconv(c, &enc, &fenc)
@@ -197,7 +196,7 @@ endfunction
 "----------------------------------------
 " diff/patch
 "----------------------------------------
-" diffÇÃê›íË
+" diffの設定
 if has('win32') || has('win64')
   set diffexpr=MyDiff()
   function! MyDiff()
@@ -215,28 +214,28 @@ if has('win32') || has('win64')
   endfunction
 endif
 
-" åªÉoÉbÉtÉ@ÇÃç∑ï™ï\é¶(ïœçXâ”èäÇÃï\é¶)
+" 現バッファの差分表示(変更箇所の表示)
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-" ÉtÉ@ÉCÉãÇ‹ÇΩÇÕÉoÉbÉtÉ@î‘çÜÇéwíËÇµÇƒç∑ï™ï\é¶ÅB#Ç»ÇÁó†ÉoÉbÉtÉ@Ç∆î‰är
+" ファイルまたはバッファ番号を指定して差分表示。#なら裏バッファと比較
 command! -nargs=? -complete=file Diff if '<args>'=='' | browse vertical diffsplit|else| vertical diffsplit <args>|endif
-" ÉpÉbÉ`ÉRÉ}ÉìÉh
+" パッチコマンド
 set patchexpr=MyPatch()
 function! MyPatch()
    call system($VIM."\\'.'patch -o " . v:fname_out . " " . v:fname_in . " < " . v:fname_diff)
 endfunction
 
 "----------------------------------------
-" ÉmÅ[É}ÉãÉÇÅ[Éh
+" ノーマルモード
 "----------------------------------------
-" ÉwÉãÉvåüçı
+" ヘルプ検索
 nnoremap <F1> K
-" åªç›äJÇ¢ÇƒÇ¢ÇÈvimÉXÉNÉäÉvÉgÉtÉ@ÉCÉãÇé¿çs
+" 現在開いているvimスクリプトファイルを実行
 nnoremap <F8> :source %<CR>
-" ã≠êßëSï€ë∂èIóπÇñ≥å¯âª
+" 強制全保存終了を無効化
 nnoremap ZZ <Nop>
-" ÉJÅ[É\ÉãÇj k Ç≈ÇÕï\é¶çsÇ≈à⁄ìÆÇ∑ÇÈÅBï®óùçsà⁄ìÆÇÕ<C-n>,<C-p>
-" ÉLÅ[É{Å[ÉhÉ}ÉNÉçÇ…ÇÕï®óùçsà⁄ìÆÇêÑèß
-" h l ÇÕçsññÅAçsì™Çí¥Ç¶ÇÈÇ±Ç∆Ç™â¬î\Ç…ê›íË(whichwrap)
+" カーソルをj k では表示行で移動する。物理行移動は<C-n>,<C-p>
+" キーボードマクロには物理行移動を推奨
+" h l は行末、行頭を超えることが可能に設定(whichwrap)
 nnoremap <Down> gj
 nnoremap <Up>   gk
 nnoremap h <Left>zv
@@ -245,22 +244,22 @@ nnoremap k gk
 nnoremap l <Right>zv
 
 "----------------------------------------
-" ë}ì¸ÉÇÅ[Éh
+" 挿入モード
 "----------------------------------------
 
 "----------------------------------------
-" ÉrÉWÉÖÉAÉãÉÇÅ[Éh
+" ビジュアルモード
 "----------------------------------------
 
 "----------------------------------------
-" ÉRÉ}ÉìÉhÉÇÅ[Éh
+" コマンドモード
 "----------------------------------------
 
 "----------------------------------------
-" VimÉXÉNÉäÉvÉg
+" Vimスクリプト
 "----------------------------------------
 """"""""""""""""""""""""""""""
-" ÉtÉ@ÉCÉãÇäJÇ¢ÇΩÇÁëOâÒÇÃÉJÅ[É\Éãà íuÇ÷à⁄ìÆ
+" ファイルを開いたら前回のカーソル位置へ移動
 " $VIMRUNTIME/vimrc_example.vim
 """"""""""""""""""""""""""""""
 augroup vimrcEx
@@ -269,7 +268,7 @@ augroup vimrcEx
 augroup END
 
 """"""""""""""""""""""""""""""
-" ë}ì¸ÉÇÅ[ÉhéûÅAÉXÉeÅ[É^ÉXÉâÉCÉìÇÃÉJÉâÅ[ïœçX
+" 挿入モード時、ステータスラインのカラー変更
 """"""""""""""""""""""""""""""
 let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
 
@@ -281,7 +280,7 @@ if has('syntax')
   augroup END
 endif
 " if has('unix') && !has('gui_running')
-"   " ESCÇ≈Ç∑ÇÆÇ…îΩâfÇ≥ÇÍÇ»Ç¢ëŒçÙ
+"   " ESCですぐに反映されない対策
 "   inoremap <silent> <ESC> <ESC>
 " endif
 
@@ -307,11 +306,11 @@ function! s:GetHighlight(hi)
 endfunction
 
 """"""""""""""""""""""""""""""
-" ëSäpÉXÉyÅ[ÉXÇï\é¶
+" 全角スペースを表示
 """"""""""""""""""""""""""""""
-" ÉRÉÅÉìÉgà»äOÇ≈ëSäpÉXÉyÅ[ÉXÇéwíËÇµÇƒÇ¢ÇÈÇÃÇ≈ÅAscriptencodingÇ∆ÅA
-" Ç±ÇÃÉtÉ@ÉCÉãÇÃÉGÉìÉRÅ[ÉhÇ™àÍívÇ∑ÇÈÇÊÇ§íçà”ÅI
-" ã≠í≤ï\é¶Ç≥ÇÍÇ»Ç¢èÍçáÅAÇ±Ç±Ç≈scriptencodingÇéwíËÇ∑ÇÈÇ∆Ç§Ç‹Ç≠Ç¢Ç≠éñÇ™Ç†ÇËÇ‹Ç∑ÅB
+" コメント以外で全角スペースを指定しているので、scriptencodingと、
+" このファイルのエンコードが一致するよう注意！
+" 強調表示されない場合、ここでscriptencodingを指定するとうまくいく事があります。
 " scriptencoding cp932
 function! ZenkakuSpace()
   silent! let hi = s:GetHighlight('ZenkakuSpace')
@@ -323,24 +322,24 @@ if has('syntax')
   augroup ZenkakuSpace
     autocmd!
     autocmd ColorScheme       * call ZenkakuSpace()
-    autocmd VimEnter,WinEnter * match ZenkakuSpace /Å@/
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
   augroup END
   call ZenkakuSpace()
 endif
 
 """"""""""""""""""""""""""""""
-" grep,tagsÇÃÇΩÇﬂÉJÉåÉìÉgÉfÉBÉåÉNÉgÉäÇÉtÉ@ÉCÉãÇ∆ìØÇ∂ÉfÉBÉåÉNÉgÉäÇ…à⁄ìÆÇ∑ÇÈ
+" grep,tagsのためカレントディレクトリをファイルと同じディレクトリに移動する
 """"""""""""""""""""""""""""""
 " if exists('+autochdir')
-"   "autochdirÇ™Ç†ÇÈèÍçáÉJÉåÉìÉgÉfÉBÉåÉNÉgÉäÇà⁄ìÆ
+"   "autochdirがある場合カレントディレクトリを移動
 "   set autochdir
 " else
-"   "autochdirÇ™ë∂ç›ÇµÇ»Ç¢Ç™ÅAÉJÉåÉìÉgÉfÉBÉåÉNÉgÉäÇà⁄ìÆÇµÇΩÇ¢èÍçá
+"   "autochdirが存在しないが、カレントディレクトリを移動したい場合
 "   au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 " endif
 
 "----------------------------------------
-" plugin
+" 各種プラグイン設定
 "----------------------------------------
 set nocompatible
 filetype on
@@ -352,7 +351,21 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'cake.vim'
 Bundle 'neocomplcache'
-Bundle 'unite.vim'
+let g:neocomplcache_enable_at_startup = 1
+function InsertTabWrapper()
+    if pumvisible()
+        return "\<c-n>"
+    endif
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k\|<\|/'
+        return "\<tab>"
+    elseif exists('&omnifunc') && &omnifunc == ''
+        return "\<c-n>"
+    else
+        return "\<c-x>\<c-o>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 Bundle 'surround.vim'
 Bundle 'taglist.vim'
 Bundle 'ZenCoding.vim'
@@ -360,7 +373,24 @@ Bundle 'ref.vim'
 Bundle 'The-NERD-tree'
 let NERDTreeShowHidden=1
 Bundle 'The-NERD-Commenter'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
+
+" vimshell
+let g:VimShell_EnableInteractive = 1
+let g:vimshell_interactive_update_time = 10
+let g:vimshell_prompt =$USERNAME."$USR% "
 "----------------------------------------
-" àÍéûê›íË
+" 一時設定
 "----------------------------------------
+"----------------------------------------
+" その他
+"----------------------------------------
+"
+"html:テンプレ
+augroup SkeletonAu
+    autocmd!
+    autocmd BufNewFile *.html 0r $HOME/.vim/temp.html
+augroup END
+
 

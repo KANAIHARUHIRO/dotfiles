@@ -1,3 +1,3 @@
-export EDITOR=mvim
-export GIT_EDITOR='mvim -f'
+export CLICOLOR=1
+export LSCOLORS=DxGxcxdxCxegedabagacad
 
