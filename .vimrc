@@ -372,6 +372,7 @@ Bundle 'ZenCoding.vim'
 Bundle 'ref.vim'
 Bundle 'The-NERD-tree'
 let NERDTreeShowHidden=1
+NERDTree
 Bundle 'The-NERD-Commenter'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
@@ -380,6 +381,12 @@ Bundle 'Shougo/vimshell'
 let g:VimShell_EnableInteractive = 1
 let g:vimshell_interactive_update_time = 10
 let g:vimshell_prompt =$USERNAME."$USR% "
+Bundle 'thinca/vim-quickrun'
+" javascript環境設定
+Bundle 'JavaScript-syntax'
+Bundle 'pangloss/vim-javascript'
+autocmd FileType javascript :compiler gjslint
+autocmd QuickfixCmdPost make copen
 "----------------------------------------
 " 一時設定
 "----------------------------------------
@@ -392,5 +399,6 @@ augroup SkeletonAu
     autocmd!
     autocmd BufNewFile *.html 0r $HOME/.vim/temp.html
 augroup END
+
 
 

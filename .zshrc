@@ -234,7 +234,7 @@ linux*)
     alias ls="ls --color"
     ;;
 esac
-
+#test
 alias la="ls -a"
 alias lf="ls -F"
 alias ll="ls -l"
