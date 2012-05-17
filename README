@@ -1,1 +1,5 @@
 dotfiles
+#git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git 
+#でインストールし直さないとだめっぽい
+#vimshellも
+#http://jlinuxer.dip.jp/2011/11/vimproc/
