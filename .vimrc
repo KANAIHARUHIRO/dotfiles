@@ -159,6 +159,8 @@ set display=lastline
 " Tab、行末の半角スペースを明示的に表示する
 set list
 set listchars=tab:^\ ,trail:~
+" タブの幅
+set tabstop=8
 
 " ハイライトを有効にする
 if &t_Co > 2 || has('gui_running')
@@ -377,11 +379,12 @@ Bundle 'The-NERD-Commenter'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 
-" vimshell
+"vimshell
 let g:VimShell_EnableInteractive = 1
 let g:vimshell_interactive_update_time = 10
 let g:vimshell_prompt =$USERNAME."$USR% "
 Bundle 'thinca/vim-quickrun'
+"VimShell
 " javascript環境設定
 Bundle 'JavaScript-syntax'
 Bundle 'pangloss/vim-javascript'
@@ -396,9 +399,3 @@ autocmd QuickfixCmdPost make copen
 "
 "html:テンプレ
 augroup SkeletonAu
-    autocmd!
-    autocmd BufNewFile *.html 0r $HOME/.vim/temp.html
-augroup END
-
-
-
