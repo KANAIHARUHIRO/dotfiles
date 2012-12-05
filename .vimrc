@@ -166,10 +166,18 @@ set tabstop=8
 if &t_Co > 2 || has('gui_running')
   syntax on
 endif
+" 社長設定
 " 色テーマ設定
 " gvimの色テーマは.gvimrcで指定する
-" colorscheme mycolor
-
+colorscheme desert
+" タブの代わりに空白文字を挿入する
+set expandtab
+" タブ文字、行末など不可視文字を表示する
+set list
+" 検索で、大文字小文字を区別しない
+set ignorecase
+" バックアップファイルを作るディレクトリ
+set backupdir=$HOME/vimbackup
 """"""""""""""""""""""""""""""
 " ステータスラインに文字コード等表示
 " iconvが使用可能の場合、カーソル上の文字コードをエンコードに応じた表示にするFencB()を使用
@@ -343,6 +351,7 @@ endif
 "----------------------------------------
 " 各種プラグイン設定
 "----------------------------------------
+
 set nocompatible
 filetype on
 
@@ -384,12 +393,10 @@ let g:VimShell_EnableInteractive = 1
 let g:vimshell_interactive_update_time = 10
 let g:vimshell_prompt =$USERNAME."$USR% "
 Bundle 'thinca/vim-quickrun'
+Bundle 'pangloss/vim-javascript'
 "VimShell
 " javascript環境設定
 Bundle 'JavaScript-syntax'
-Bundle 'pangloss/vim-javascript'
-autocmd FileType javascript :compiler gjslint
-autocmd QuickfixCmdPost make copen
 "----------------------------------------
 " 一時設定
 "----------------------------------------
